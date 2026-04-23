@@ -31,6 +31,7 @@ def load_question_map():
         return {}
 
 def load_hypotheses(checkpoint_folder, max_samples=None):
+    checkpoint_folder = checkpoint_folder.replace("\\", "/")
     folder_name = os.path.splitext(checkpoint_folder)[0]
     folder_path = os.path.join(CHECKPOINT_DIR, folder_name)
     
