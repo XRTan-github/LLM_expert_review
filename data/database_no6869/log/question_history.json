@@ -1,0 +1,14 @@
+{
+  "Why does the **HEA alloy Ni33.9864Cr13.9944Co17.9928Al15.9936Fe17.9928Hf0.02Y0.02**,**HEA alloy Ni43.9824Cr5.9976Co17.9928Al21.9912Fe9.996Hf0.02Y0.02**, and **HEA alloy Ni47.9808Cr9.996Co9.996Al25.9896Fe5.9976Hf0.02Y0.02** all exhibit better **oxidation performance** than that of **MCrAlY alloy Ni39.836Cr17.9262Co17.9262Al23.9016Hf0.07Y0.34**?": {
+    "checkpoint_file": "log\\checkpoint_001.json",
+    "timestamp": "2025-12-10 19:34:39"
+  },
+  "Why does the **HEA alloy Ni27.9888Cr15.9936Co17.9928Al19.992Fe17.9928Hf0.02Y0.02**, and **HEA alloy Ni19.992Cr19.992Co19.992Al19.992Fe19.992Hf0.02Y0.02** all exhibit better **oxidation performance** than that of **MCrAlY alloy Ni39.836Cr17.9262Co17.9262Al23.9016Hf0.07Y0.34**?": {
+    "checkpoint_file": "log\\checkpoint_002.json",
+    "timestamp": "2025-12-12 11:24:54"
+  },
+  "Why does the **HEA alloy Ni29.988Cr15.9936Co9.996Al23.9904Fe19.992Hf0.02Y0.02**, and **HEA alloy Ni29.988Cr21.9912Co15.9936Al23.9904Fe7.9968Hf0.02Y0.02** all exhibit worse **oxidation performance** than that of **MCrAlY alloy Ni39.836Cr17.9262Co17.9262Al23.9016Hf0.07Y0.34**?": {
+    "checkpoint_file": "log\\checkpoint_003.json",
+    "timestamp": "2025-12-14 11:35:52"
+  }
+}
