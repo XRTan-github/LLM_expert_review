@@ -19,6 +19,31 @@ EXPERT_DIR = os.path.join(BASE_DIR, "expert_logs")
 st.set_page_config(page_title="LLM Theory Evaluator", layout="wide")
 
 ADMIN_PASSWORD = "admin123"  # change this
+
+
+# --- ADD THIS SECTION BELOW YOUR SUBMIT BUTTON ---
+        
+st.divider()
+st.subheader("📤 Finalize & Export Results")
+st.info("Once you have finished evaluating the assigned hypotheses, please download the results and send the JSON file to the researcher.")
+
+# Prepare the data for download
+# We use the existing st.session_state.expert_data which stores all their logs
+export_data = {
+    "expert_id": expert_id_input,
+    "evaluations": st.session_state.expert_data
+}
+
+json_string = json.dumps(export_data, indent=4)
+
+st.download_button(
+    label="Download Results as JSON",
+    data=json_string,
+    file_name=f"expert_{expert_id_input}_results.json",
+    mime="application/json",
+    help="Click here to download your evaluation data. Send this file to Xingru via email."
+)
+
 # =========================
 # CORE DATA FUNCTIONS
 # =========================
