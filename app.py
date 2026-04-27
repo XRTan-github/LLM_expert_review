@@ -20,30 +20,6 @@ st.set_page_config(page_title="LLM Theory Evaluator", layout="wide")
 
 ADMIN_PASSWORD = "admin123"  # change this
 
-
-# --- ADD THIS SECTION BELOW YOUR SUBMIT BUTTON ---
-        
-st.divider()
-st.subheader("📤 Finalize & Export Results")
-st.info("Once you have finished evaluating the assigned hypotheses, please download the results and send the JSON file to the researcher.")
-
-# Prepare the data for download
-# We use the existing st.session_state.expert_data which stores all their logs
-export_data = {
-    "expert_id": expert_id_input,
-    "evaluations": st.session_state.expert_data
-}
-
-json_string = json.dumps(export_data, indent=4)
-
-st.download_button(
-    label="Download Results as JSON",
-    data=json_string,
-    file_name=f"expert_{expert_id_input}_results.json",
-    mime="application/json",
-    help="Click here to download your evaluation data. Send this file to Xingru via email."
-)
-
 # =========================
 # CORE DATA FUNCTIONS
 # =========================
@@ -310,3 +286,21 @@ elif mode == "Mode B (EMVS/CDI)" and expert_id_input:
 
 elif not expert_id_input:
     st.warning("Please enter your Expert ID in the sidebar to begin.")
+
+
+# =========================
+# DOWNLOAD SECTION
+# =========================
+st.sidebar.divider()
+st.sidebar.subheader("Finalize & Send")
+if st.session_state.expert_data:
+    json_output = json.dumps(st.session_state.expert_data, indent=4)
+    st.sidebar.download_button(
+        label="📥 Download Results (JSON)",
+        data=json_output,
+        file_name=f"{expert_id_input}_results.json",
+        mime="application/json"
+    )
+    st.sidebar.write("Please send the downloaded file to the researcher.")
+else:
+    st.sidebar.warning("No evaluations saved yet.")
