@@ -118,7 +118,7 @@ with st.sidebar:
 
             reset_inputs()
         
-    mode = st.radio("Select Evaluation Mode", ["Home", "Mode B (EMVS)"])
+    mode = st.radio("Select Evaluation Mode", ["Home", "EMVS"])
     question_map = load_question_map()
     q_list = list(question_map.keys())
     # selected_q = st.selectbox("Select Question to Evaluate", q_list)
@@ -139,8 +139,8 @@ if mode == "Home":
 # =========================
 # MODE B: EMVS ONLY
 # =========================
-elif mode == "Mode B (EMVS)" and expert_id_input:
-    st.header("🔬 Mode B: Scientific Validity (EMVS)")
+elif mode == "EMVS" and expert_id_input:
+    st.header("🔬 Scientific Validity (EMVS)")
     
     with st.expander("❓ View Current Question Details", expanded=True):
         st.write(f"**Question ID:** {selected_q}")
