@@ -101,8 +101,7 @@ with st.sidebar:
     if admin_input == ADMIN_PASSWORD:
         is_admin = True
         st.success("Admin mode enabled")
-#######a
-    # 🔑 FIXED LOGIN SWITCH
+        
     if expert_id_input:
         path = os.path.join(EXPERT_DIR, f"{expert_id_input}.json")
 
@@ -134,10 +133,7 @@ if mode == "Home":
 
 
 # =========================
-# MODE B: VISUAL GRAPH INTERFACE
-# =========================
-# =========================
-# MODE B: EMVS ONLY
+# EMVS VISUAL GRAPH INTERFACE
 # =========================
 elif mode == "EMVS" and expert_id_input:
     st.header("🔬 Scientific Validity (EMVS)")
@@ -196,89 +192,7 @@ elif mode == "EMVS" and expert_id_input:
             st.session_state.expert_data["mode_B"][selected_q][current_hyp['file']] = eval_record
             save_expert_data(expert_id_input, st.session_state.expert_data)
             st.success(f"Successfully logged evaluation for {current_hyp['file']}")
-
-# elif mode == "Mode B (EMVS/CDI)" and expert_id_input:
-#     st.header("🔬 Mode B: Scientific Validity & Causal Mapping")
-#     with st.expander("❓ View Current Question Details", expanded=True):
-#             st.write(f"**Question ID:** {selected_q}")
-
-#     checkpoint = question_map[selected_q]["checkpoint_file"]
-#     hyps = load_hypotheses(checkpoint)
-
-#     if hyps:
-#         h_idx = st.selectbox("Select Theory Run to Evaluate", range(len(hyps)), 
-#                              format_func=lambda x: hyps[x]['file'],on_change=reset_inputs)
-#         current_hyp = hyps[h_idx]
-        
-#         st.info("### Current Theory Text")
-#         st.markdown(current_hyp['text'])
-
-#         already_done = (
-#             selected_q in st.session_state.expert_data["mode_B"]
-#             and current_hyp['file'] in st.session_state.expert_data["mode_B"][selected_q]
-#         )
-
-#         if already_done and not is_admin:
-#             st.warning("This theory has already been evaluated. (Read-only)")
-
-#             record = st.session_state.expert_data["mode_B"][selected_q][current_hyp['file']]
-
-#             st.subheader("Previous Evaluation")
-#             st.write("**EMVS:**", record["EMVS"])
-#             st.write("**Nodes:**", record["nodes"])
-#             st.write("**Edges:**", record["edges"])
-#             st.stop()  # 🔑 prevents editing
-
-#         col1, col2 = st.columns([1, 1])
-        
-#         with col1:
-#             st.subheader("1. Metric Scoring")
-#             c1, c2 = st.columns(2)
-#             corr = c1.slider("Correctness", 1, 5, 3)
-#             comp = c2.slider("Completeness", 1, 5, 3)
-#             caus = c1.slider("Causal Clarity", 1, 5, 3)
-#             inte = c2.slider("Integration", 1, 5, 3)
-
-#             st.subheader("2. Node Extraction")
-#             st.caption("Enter keywords found in the theory text to create graph nodes.")
-#             node_input = st.text_area("List Nodes (separated by commas)", placeholder="e.g., FCC Phase, BCC Threshold")
-#             nodes_list = [n.strip() for n in node_input.split(",") if n.strip()]
-
-#         with col2:
-#             st.subheader("3. Directed Causal Links")
-#             if nodes_list:
-#                 s_col, t_col = st.columns(2)
-#                 source = s_col.selectbox("From (Source)", nodes_list)
-#                 target = t_col.selectbox("To (Target)", nodes_list)
-                
-#                 if st.button("Add Directed Edge"):
-#                     if (source, target) not in st.session_state.temp_edges:
-#                         st.session_state.temp_edges.append((source, target))
-                
-#                 if st.button("Clear Graph"):
-#                     st.session_state.temp_edges = []
-
-#                 # Visualization
-#                 nodes = [Node(id=n, label=n, size=15, color="#007bff") for n in nodes_list]
-#                 edges = [Edge(source=s, target=t, type="CURVE_SMOOTH") for s, t in st.session_state.temp_edges]
-                
-#                 config = Config(width=500, height=350, directed=True, physics=True)
-#                 agraph(nodes=nodes, edges=edges, config=config)
-#             else:
-#                 st.warning("Enter nodes in Step 2 to enable the drawing tool.")
-
-#         if st.button("Submit Evaluation & Log Data"):
-#             eval_record = {
-#                 "EMVS": {"correctness": corr, "completeness": comp, "causal_clarity": caus, "integration": inte},
-#                 "nodes": nodes_list,
-#                 "edges": st.session_state.temp_edges
-#             }
-#             if selected_q not in st.session_state.expert_data["mode_B"]:
-#                 st.session_state.expert_data["mode_B"][selected_q] = {}
-#             st.session_state.expert_data["mode_B"][selected_q][current_hyp['file']] = eval_record
-#             save_expert_data(expert_id_input, st.session_state.expert_data)
-#             st.success(f"Successfully logged evaluation for {current_hyp['file']}")
-
+            
 elif not expert_id_input:
     st.warning("Please enter your Expert ID in the sidebar to begin.")
 
