@@ -168,11 +168,11 @@ elif mode == "EMVS" and expert_id_input:
         st.subheader("Metric Scoring")
         col_a, col_b = st.columns(2)
         with col_a:
-            corr = st.slider("Correctness", 1, 5, 3)
-            caus = st.slider("Causal Clarity", 1, 5, 3)
+            corr = st.slider("Correctness(答案对不对)", 1, 5, 3)
+            caus = st.slider("Causal Clarity(推导对不对，全不全)", 1, 5, 3)
         with col_b:
-            comp = st.slider("Completeness", 1, 5, 3)
-            inte = st.slider("Integration", 1, 5, 3)
+            comp = st.slider("Completeness(答案全不全)", 1, 5, 3)
+            inte = st.slider("novelty(答案新不新)", 1, 5, 3)
 
         if st.button("Submit Evaluation"):
             eval_record = {
@@ -180,7 +180,7 @@ elif mode == "EMVS" and expert_id_input:
                     "correctness": corr, 
                     "completeness": comp, 
                     "causal_clarity": caus, 
-                    "integration": inte
+                    "novelty": inte
                 },
                 "nodes": [],  # Kept empty for JSON schema consistency
                 "edges": []   # Kept empty for JSON schema consistency
