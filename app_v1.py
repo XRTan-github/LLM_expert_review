@@ -158,25 +158,34 @@ elif mode == "EMVS" and expert_id_input:
             and current_hyp['file'] in st.session_state.expert_data["mode_B"][selected_q]
         )
 
+        # if already_done and not is_admin:
+        #     st.warning("This theory has already been evaluated.")
+        #     record = st.session_state.expert_data["mode_B"][selected_q][current_hyp['file']]
+        #     st.json(record["EMVS"]) # Show previous scores
+        #     st.stop() 
         if already_done and not is_admin:
             st.warning("This theory has already been evaluated.")
             record = st.session_state.expert_data["mode_B"][selected_q][current_hyp['file']]
-            st.json(record["EMVS"]) # Show previous scores
-            st.stop() 
+            st.json(record["EMVS"])
+        
+            # Disable editing instead of stopping execution
+            disable_inputs = True
+        else:
+            disable_inputs = False
 
         # --- SIMPLIFIED UI ---
         st.subheader("Metric Scoring")
         col_a, col_b = st.columns(2)
         with col_a:
-            corr = st.slider("Answer Correctness(答案对不对)", 1, 5, 3)
-            caus = st.slider("Causal Correctness(推导对不对)", 1, 5, 3)
-            inte = st.slider("novelty(答案新不新)", 1, 5, 3)
+            corr = st.slider("Answer Correctness(答案对不对)", 1, 5, 3, disabled=disable_inputs)
+            caus = st.slider("Causal Correctness(推导对不对)", 1, 5, 3, disabled=disable_inputs)
+            inte = st.slider("novelty(答案新不新)", 1, 5, 3, disabled=disable_inputs)
         with col_b:
-            comp = st.slider("Answer Completeness(答案全不全)", 1, 5, 3)
-            caus_c = st.slider("Causal Completeness(推导全不全)", 1, 5, 3)
+            comp = st.slider("Answer Completeness(答案全不全)", 1, 5, 3, disabled=disable_inputs)
+            caus_c = st.slider("Causal Completeness(推导全不全)", 1, 5, 3, disabled=disable_inputs)
             
 
-        if st.button("Submit Evaluation"):
+        if st.button("Submit Evaluation", disabled=disable_inputs):
             eval_record = {
                 "EMVS": {
                     "answer_correctness": corr, 
