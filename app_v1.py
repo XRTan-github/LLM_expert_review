@@ -10,8 +10,8 @@ from streamlit_agraph import agraph, Node, Edge, Config
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-QUESTION_MAP_PATH = os.path.join(BASE_DIR, "data", "database_no6869", "log","question_history.json")
-CHECKPOINT_DIR = os.path.join(BASE_DIR, "data", "database_no6869")
+QUESTION_MAP_PATH = os.path.join(BASE_DIR, "data", "GroupA", "log","question_history.json")
+CHECKPOINT_DIR = os.path.join(BASE_DIR, "data", "GroupA")
 
 # Where expert results will be saved
 EXPERT_DIR = os.path.join(BASE_DIR, "expert_logs")
